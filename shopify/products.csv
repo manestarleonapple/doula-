@@ -1,0 +1,55 @@
+Handle,Title,Body (HTML),Vendor,Type,Tags,Published,Option1 Name,Option1 Value,Option2 Name,Option2 Value,Variant SKU,Variant Grams,Variant Inventory Tracker,Variant Inventory Policy,Variant Fulfillment Service,Variant Price,Variant Requires Shipping,Variant Taxable,Image Src,Image Position,Image Alt Text,Gift Card,Status
+potato-doener,Potato Döner,"<p>Unser Signature: knusprige Pommes direkt im Döner, dazu Salat und Soße im fluffigen Fladenbrot.</p>",Herr Biggie,Döner im Fladenbrot,"herr-biggie, fladenbrot, signature",TRUE,Sorte,Klassik,Fleisch oder Veggie,Fleisch,potato-doener-klassik-fleisch,0,,continue,manual,9.00,TRUE,TRUE,,,,FALSE,active
+potato-doener,,,,,,,,Klassik,,Veggie,potato-doener-klassik-veggie,0,,continue,manual,8.00,TRUE,TRUE,,,,,
+potato-doener,,,,,,,,Cheese,,Fleisch,potato-doener-cheese-fleisch,0,,continue,manual,10.00,TRUE,TRUE,,,,,
+potato-doener,,,,,,,,Cheese,,Veggie,potato-doener-cheese-veggie,0,,continue,manual,9.00,TRUE,TRUE,,,,,
+potato-doener,,,,,,,,Chilli Cheese,,Fleisch,potato-doener-chilli-cheese-fleisch,0,,continue,manual,11.00,TRUE,TRUE,,,,,
+potato-doener,,,,,,,,Chilli Cheese,,Veggie,potato-doener-chilli-cheese-veggie,0,,continue,manual,10.00,TRUE,TRUE,,,,,
+doener-klassik,Döner Klassik,"<p>Fleisch vom Spieß, frischer Salat, Zwiebeln, Rotkohl und Tomate im fluffigen Fladenbrot.</p>",Herr Biggie,Döner im Fladenbrot,"herr-biggie, fladenbrot, popular",TRUE,Fleisch oder Veggie,Fleisch,,,doener-klassik-fleisch,0,,continue,manual,8.00,TRUE,TRUE,,,,FALSE,active
+doener-klassik,,,,,,,,Veggie,,,doener-klassik-veggie,0,,continue,manual,7.00,TRUE,TRUE,,,,,
+doener-spezial-hawaii-cheese,"Döner Spezial, Hawaii oder Cheese","<p>Der Klassiker in drei Varianten. Gleicher Preis, du hast die Wahl.</p>",Herr Biggie,Döner im Fladenbrot,"herr-biggie, fladenbrot",TRUE,Sorte,Spezial,Fleisch oder Veggie,Fleisch,doener-spezial-hawaii-cheese-spezial-fleisch,0,,continue,manual,9.00,TRUE,TRUE,,,,FALSE,active
+doener-spezial-hawaii-cheese,,,,,,,,Spezial,,Veggie,doener-spezial-hawaii-cheese-spezial-veggie,0,,continue,manual,8.00,TRUE,TRUE,,,,,
+doener-spezial-hawaii-cheese,,,,,,,,Hawaii,,Fleisch,doener-spezial-hawaii-cheese-hawaii-fleisch,0,,continue,manual,9.00,TRUE,TRUE,,,,,
+doener-spezial-hawaii-cheese,,,,,,,,Hawaii,,Veggie,doener-spezial-hawaii-cheese-hawaii-veggie,0,,continue,manual,8.00,TRUE,TRUE,,,,,
+doener-spezial-hawaii-cheese,,,,,,,,Cheese,,Fleisch,doener-spezial-hawaii-cheese-cheese-fleisch,0,,continue,manual,9.00,TRUE,TRUE,,,,,
+doener-spezial-hawaii-cheese,,,,,,,,Cheese,,Veggie,doener-spezial-hawaii-cheese-cheese-veggie,0,,continue,manual,8.00,TRUE,TRUE,,,,,
+doener-chilli-cheese,Döner Chilli Cheese,"<p>Mit Käse und Chili, für alle, die es kräftig mögen.</p>",Herr Biggie,Döner im Fladenbrot,"herr-biggie, fladenbrot, hot",TRUE,Fleisch oder Veggie,Fleisch,,,doener-chilli-cheese-fleisch,0,,continue,manual,10.00,TRUE,TRUE,,,,FALSE,active
+doener-chilli-cheese,,,,,,,,Veggie,,,doener-chilli-cheese-veggie,0,,continue,manual,9.00,TRUE,TRUE,,,,,
+potato-duerum,Potato Dürüm,"<p>Pommes, Fleisch vom Spieß, Salat und Soße, fest eingerollt.</p>",Herr Biggie,Dürüm,"herr-biggie, duerum, signature",TRUE,Sorte,Klassik,,,potato-duerum-klassik,0,,continue,manual,10.00,TRUE,TRUE,,,,FALSE,active
+potato-duerum,,,,,,,,Cheese,,,potato-duerum-cheese,0,,continue,manual,11.00,TRUE,TRUE,,,,,
+potato-duerum,,,,,,,,Chilli Cheese,,,potato-duerum-chilli-cheese,0,,continue,manual,12.00,TRUE,TRUE,,,,,
+duerum-klassik,Dürüm Klassik,"<p>Fleisch vom Spieß, Salat und Soße im dünnen Fladen gerollt.</p>",Herr Biggie,Dürüm,"herr-biggie, duerum",TRUE,Title,Default Title,,,duerum-klassik-std,0,,continue,manual,9.00,TRUE,TRUE,,,,FALSE,active
+duerum-spezial-hawaii-cheese,"Dürüm Spezial, Hawaii oder Cheese","<p>Drei Varianten, ein Preis.</p>",Herr Biggie,Dürüm,"herr-biggie, duerum",TRUE,Sorte,Spezial,,,duerum-spezial-hawaii-cheese-spezial,0,,continue,manual,10.00,TRUE,TRUE,,,,FALSE,active
+duerum-spezial-hawaii-cheese,,,,,,,,Hawaii,,,duerum-spezial-hawaii-cheese-hawaii,0,,continue,manual,10.00,TRUE,TRUE,,,,,
+duerum-spezial-hawaii-cheese,,,,,,,,Cheese,,,duerum-spezial-hawaii-cheese-cheese,0,,continue,manual,10.00,TRUE,TRUE,,,,,
+duerum-chilli-cheese,Dürüm Chilli Cheese,<p>Gerollt mit Käse und Chili.</p>,Herr Biggie,Dürüm,"herr-biggie, duerum, hot",TRUE,Title,Default Title,,,duerum-chilli-cheese-std,0,,continue,manual,11.00,TRUE,TRUE,,,,FALSE,active
+doener-teller,Döner Teller,"<p>Fleisch vom Spieß mit Pommes, Salat und Soße.</p>",Herr Biggie,Teller,"herr-biggie, teller",TRUE,Größe,Smalls,,,doener-teller-smalls,0,,continue,manual,11.00,TRUE,TRUE,,,,FALSE,active
+doener-teller,,,,,,,,Biggie,,,doener-teller-biggie,0,,continue,manual,14.00,TRUE,TRUE,,,,,
+veggie-teller,Veggie Teller,"<p>Ohne Fleisch, mit Pommes, Salat und Soße.</p>",Herr Biggie,Teller,"herr-biggie, teller, veggie",TRUE,Größe,Smalls,,,veggie-teller-smalls,0,,continue,manual,10.00,TRUE,TRUE,,,,FALSE,active
+veggie-teller,,,,,,,,Biggie,,,veggie-teller-biggie,0,,continue,manual,12.00,TRUE,TRUE,,,,,
+taxi-teller,Taxi Teller,<p>Der große Teller mit Currywurst. Für den richtig großen Hunger.</p>,Herr Biggie,Teller,"herr-biggie, teller",TRUE,Title,Default Title,,,taxi-teller-std,0,,continue,manual,16.00,TRUE,TRUE,,,,FALSE,active
+doener-box,Döner Box,"<p>Schnell, satt, günstig. Die Box für unterwegs zum Zug.</p>",Herr Biggie,Boxen,"herr-biggie, box, deal",TRUE,Sorte,Klassik,Größe,Smalls,doener-box-klassik-smalls,0,,continue,manual,6.00,TRUE,TRUE,,,,FALSE,active
+doener-box,,,,,,,,Klassik,,Biggie,doener-box-klassik-biggie,0,,continue,manual,8.00,TRUE,TRUE,,,,,
+doener-box,,,,,,,,Potato,,Smalls,doener-box-potato-smalls,0,,continue,manual,6.00,TRUE,TRUE,,,,,
+doener-box,,,,,,,,Potato,,Biggie,doener-box-potato-biggie,0,,continue,manual,8.00,TRUE,TRUE,,,,,
+doener-box,,,,,,,,Salat,,Smalls,doener-box-salat-smalls,0,,continue,manual,6.00,TRUE,TRUE,,,,,
+doener-box,,,,,,,,Salat,,Biggie,doener-box-salat-biggie,0,,continue,manual,8.00,TRUE,TRUE,,,,,
+fleischportion,Fleischportion,"<p>Nur Fleisch vom Spieß, ohne alles. Zum Teilen oder Mitnehmen.</p>",Herr Biggie,Boxen,"herr-biggie, box",TRUE,Größe,Smalls,,,fleischportion-smalls,0,,continue,manual,8.00,TRUE,TRUE,,,,FALSE,active
+fleischportion,,,,,,,,Biggie,,,fleischportion-biggie,0,,continue,manual,12.00,TRUE,TRUE,,,,,
+fleischportion,,,,,,,,XXL,,,fleischportion-xxl,0,,continue,manual,22.00,TRUE,TRUE,,,,,
+pommes,Pommes,<p>Goldgelb und knusprig.</p>,Herr Biggie,Pommes & Co,"herr-biggie, pommes",TRUE,Größe,Smalls,,,pommes-smalls,0,,continue,manual,4.00,TRUE,TRUE,,,,FALSE,active
+pommes,,,,,,,,Biggie,,,pommes-biggie,0,,continue,manual,5.00,TRUE,TRUE,,,,,
+chicken-nuggets,Chicken Nuggets,<p>Mit Soße nach Wahl.</p>,Herr Biggie,Pommes & Co,"herr-biggie, pommes",TRUE,Stückzahl,6er,,,chicken-nuggets-6er,0,,continue,manual,6.00,TRUE,TRUE,,,,FALSE,active
+chicken-nuggets,,,,,,,,9er,,,chicken-nuggets-9er,0,,continue,manual,9.00,TRUE,TRUE,,,,,
+chicken-nuggets,,,,,,,,20er,,,chicken-nuggets-20er,0,,continue,manual,17.00,TRUE,TRUE,,,,,
+falafel,"Falafel, 6 Stück",<p>Sechs Falafel mit Soße nach Wahl.</p>,Herr Biggie,Pommes & Co,"herr-biggie, pommes, veggie",TRUE,Title,Default Title,,,falafel-std,0,,continue,manual,8.00,TRUE,TRUE,,,,FALSE,active
+currywurst,Currywurst,<p>Klassisch mit Currysoße.</p>,Herr Biggie,Wurst & Salate,"herr-biggie, wurst-salat",TRUE,Beilage,Ohne Beilage,,,currywurst-ohne-beilage,0,,continue,manual,5.00,TRUE,TRUE,,,,FALSE,active
+currywurst,,,,,,,,Mit Pommes,,,currywurst-mit-pommes,0,,continue,manual,9.00,TRUE,TRUE,,,,,
+bratwurst,Bratwurst,"<p>Vom Grill, im Brötchen oder mit Pommes.</p>",Herr Biggie,Wurst & Salate,"herr-biggie, wurst-salat",TRUE,Beilage,Im Brötchen,,,bratwurst-im-br-tchen,0,,continue,manual,4.00,TRUE,TRUE,,,,FALSE,active
+bratwurst,,,,,,,,Mit Pommes,,,bratwurst-mit-pommes,0,,continue,manual,8.00,TRUE,TRUE,,,,,
+salat,Salat,"<p>Frischer gemischter Salat, auf Wunsch mit Fleisch vom Spieß.</p>",Herr Biggie,Wurst & Salate,"herr-biggie, wurst-salat",TRUE,Art,Gemischt,,,salat-gemischt,0,,continue,manual,8.00,TRUE,TRUE,,,,FALSE,active
+salat,,,,,,,,Mit Fleisch,,,salat-mit-fleisch,0,,continue,manual,12.00,TRUE,TRUE,,,,,
+softdrink,Softdrink,<p>Gekühlt aus dem Kühlschrank.</p>,Herr Biggie,Getränke,"herr-biggie, getraenke",TRUE,Title,Default Title,,,softdrink-std,0,,continue,manual,2.25,TRUE,TRUE,,,,FALSE,active
+ayran,Ayran,<p>Der Klassiker zum Döner.</p>,Herr Biggie,Getränke,"herr-biggie, getraenke",TRUE,Title,Default Title,,,ayran-std,0,,continue,manual,2.00,TRUE,TRUE,,,,FALSE,active
+extra-kaese,Extra Käse,<p>Extra zu einem Gericht. Wird über die Website automatisch hinzugefügt.</p>,Herr Biggie,Extras,"herr-biggie, extra",TRUE,Title,Default Title,,,extra-kaese-std,0,,continue,manual,1.00,TRUE,TRUE,,,,FALSE,active
+extra-sosse,Extra Soße,<p>Extra zu einem Gericht. Wird über die Website automatisch hinzugefügt.</p>,Herr Biggie,Extras,"herr-biggie, extra",TRUE,Title,Default Title,,,extra-sosse-std,0,,continue,manual,0.50,TRUE,TRUE,,,,FALSE,active
