@@ -67,8 +67,8 @@
       <nav class="main-nav" aria-label="Hauptnavigation">
         <a href="#speisekarte" data-i18n="nav.menu">Speisekarte</a>
         <a href="#sossen" data-i18n="nav.sauces">3 Soßen</a>
-        <a href="#crew" data-i18n="nav.crew">Crew</a>
-        <a href="#standort" data-i18n="nav.location">Standort</a>
+        <a href="#geschichte" data-i18n="nav.story">Geschichte</a>
+        <a href="#standort" data-i18n="nav.location">Anfahrt</a>
       </nav>
       <div class="header-actions">
         <button class="btn-ghost lang-toggle" type="button" id="langToggle" aria-label="Switch to English">
@@ -85,31 +85,41 @@
 
   <main>
     <!-- HERO -->
-    <section class="hero">
-      <div class="wrap hero-grid">
-        <div class="hero-copy">
-          <p class="open-sticker" id="openSticker"><span id="openStickerText">We are open</span></p>
-          <h1 class="hero-title" data-i18n="hero.title">Berliner Art. Direkt am Bahnhof Siegen.</h1>
-          <p class="hero-sub" data-i18n="hero.sub">Döner, Dürüm und der Potato mit Pommes drin. Online bestellen, abholen oder liefern lassen.</p>
-          <div class="hero-ctas">
-            <a class="btn btn-primary" href="#speisekarte"><span data-i18n="cta.order">Jetzt bestellen</span><i class="ph-bold ph-arrow-right" aria-hidden="true"></i></a>
-            <a class="btn btn-secondary" href="#standort"><i class="ph-bold ph-map-pin" aria-hidden="true"></i><span data-i18n="cta.find">So findest du uns</span></a>
-          </div>
-        </div>
+    <section class="hero" aria-labelledby="heroTitle">
+      <!-- Hintergrund: Instagram-Reel als MP4 (assets/video/hero.mp4). Fehlt die Datei, bleibt das Foto mit Zoom-Effekt. -->
+      <div class="hero-bg" aria-hidden="true">
+        <img class="hero-poster" src="assets/img/doener-potato.jpg" alt="" width="1100" height="1346" fetchpriority="high">
+        <video class="hero-video" id="heroVideo" muted loop playsinline preload="none" poster="assets/img/doener-potato.jpg"></video>
+      </div>
+      <div class="hero-scrim" aria-hidden="true"></div>
 
-        <div class="hero-media">
-          <div class="reel-frame" id="reelFrame">
-            <button class="reel-poster" type="button" id="reelPlay" aria-describedby="reelConsent">
-              <img src="assets/img/doener-potato.jpg" alt="Potato Döner in der schwarzen Herr-Biggie-Tüte, mit Pommes und Knoblauchsoße" width="1100" height="1346" fetchpriority="high">
-              <span class="reel-play" aria-hidden="true"><i class="ph-bold ph-play"></i></span>
-              <span class="reel-label"><i class="ph-bold ph-instagram-logo" aria-hidden="true"></i><span data-i18n="reel.label">Reel abspielen</span></span>
-            </button>
-          </div>
-          <p class="reel-consent" id="reelConsent" data-i18n="reel.consent">Beim Abspielen lädt Instagram (Meta) das Video. Dabei werden Daten an Meta übertragen.</p>
-          <img class="hero-badge" src="assets/img/logo-herr-biggie.jpg" alt="" width="120" height="120">
+      <div class="wrap hero-inner">
+        <p class="open-sticker" id="openSticker"><span id="openStickerText">We are open</span></p>
+        <h1 class="hero-title" id="heroTitle">
+          <span class="line"><span data-i18n="hero.title1">Berliner Art.</span></span>
+          <span class="line"><span data-i18n="hero.title2">Direkt am Bahnhof Siegen.</span></span>
+        </h1>
+        <p class="hero-sub" data-i18n="hero.sub">Döner, Dürüm und der Potato mit Pommes drin. Online bestellen, abholen oder liefern lassen.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#speisekarte"><span data-i18n="cta.order">Jetzt bestellen</span><i class="ph-bold ph-arrow-right" aria-hidden="true"></i></a>
+          <a class="btn btn-on-dark" href="#standort"><i class="ph-bold ph-map-pin" aria-hidden="true"></i><span data-i18n="cta.find">So findest du uns</span></a>
         </div>
       </div>
+
+      <div class="hero-tools">
+        <a class="chip-on-dark" id="reelLink" href="https://www.instagram.com/reel/CztRO9YMEO1/" target="_blank" rel="noopener"><i class="ph-bold ph-instagram-logo" aria-hidden="true"></i><span data-i18n="reel.open">Auf Instagram ansehen</span></a>
+        <button class="chip-on-dark icon-only" type="button" id="videoToggle" hidden aria-label="Video pausieren"><i class="ph-bold ph-pause" aria-hidden="true"></i></button>
+      </div>
+      <img class="hero-badge" src="assets/img/logo-herr-biggie.jpg" alt="" width="120" height="120">
     </section>
+
+    <!-- Laufband (einziges auf der Seite) -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Potato Döner</span><i class="ph-bold ph-crown"></i><span>3 Soßen</span><i class="ph-bold ph-crown"></i><span>Berliner Art</span><i class="ph-bold ph-crown"></i><span>Am Bahnhof 2</span><i class="ph-bold ph-crown"></i><span>Mo-Sa 12-22 Uhr</span><i class="ph-bold ph-crown"></i>
+        <span>Potato Döner</span><i class="ph-bold ph-crown"></i><span>3 Soßen</span><i class="ph-bold ph-crown"></i><span>Berliner Art</span><i class="ph-bold ph-crown"></i><span>Am Bahnhof 2</span><i class="ph-bold ph-crown"></i><span>Mo-Sa 12-22 Uhr</span><i class="ph-bold ph-crown"></i>
+      </div>
+    </div>
 
     <!-- FACT BAND -->
     <section class="facts" aria-label="Auf einen Blick">
@@ -217,7 +227,7 @@
     <!-- SAUCES -->
     <section class="sauces" id="sossen" aria-labelledby="saucesTitle">
       <div class="wrap sauces-grid">
-        <figure class="sauces-img">
+        <figure class="sauces-img reveal">
           <img src="assets/img/knoblauchsosse.jpg" alt="Knoblauchsoße wird großzügig über einen Döner gegeben" width="1100" height="1328" loading="lazy">
         </figure>
         <div class="sauces-copy">
@@ -236,16 +246,16 @@
     <!-- REVIEWS -->
     <section class="reviews" aria-labelledby="reviewsTitle">
       <div class="wrap reviews-grid">
-        <div class="score">
+        <div class="score reveal">
           <p class="score-num"><span>8,2</span><small>/10</small></p>
           <h2 id="reviewsTitle" data-i18n="reviews.title">Platz 1 von 16 türkischen Lokalen in Siegen.</h2>
           <p class="score-src" data-i18n="reviews.src">Coolibri, 286 Bewertungen. Service 9,2 von 10.</p>
         </div>
-        <figure class="quote">
+        <figure class="quote reveal">
           <blockquote><p data-i18n="reviews.q1">„Bester Döner im Siegerland, so guten gibt's sonst nur in Berlin.“</p></blockquote>
           <figcaption>Kevin <span data-i18n="reviews.q1by">bewertet 10/10 auf Coolibri</span></figcaption>
         </figure>
-        <figure class="quote quote-alt">
+        <figure class="quote quote-alt reveal">
           <blockquote><p data-i18n="reviews.q2">„Megafreundliche Bedienung.“</p></blockquote>
           <figcaption data-i18n="reviews.q2by">Gast auf Coolibri</figcaption>
         </figure>
@@ -258,11 +268,10 @@
         <h2 id="crewTitle" data-i18n="crew.title">Die Crew vom Kiosk.</h2>
         <p class="crew-sub" data-i18n="crew.sub">Runder Kiosk am ZOB, Sticker an jeder Wand und ein Service, den Gäste mit 9,2 von 10 bewerten.</p>
         <div class="bento">
-          <figure class="b-kiosk"><img src="assets/img/kiosk-nacht.jpg" alt="Der runde Herr-Biggie-Kiosk am Bahnhof Siegen bei Nacht mit Leuchtschild" width="480" height="639" loading="lazy"></figure>
-          <figure class="b-team"><img src="assets/img/team-biggie.jpg" alt="Der Chef von Herr Biggie hält einen frisch gemachten Döner in die Kamera" width="447" height="447" loading="lazy"></figure>
-          <figure class="b-open"><img src="assets/img/eroeffnung.jpg" alt="Gast bei der Eröffnung mit Döner in der Hand vor goldenen Ballons" width="447" height="447" loading="lazy"></figure>
-          <figure class="b-plate"><img src="assets/img/team-teller.jpg" alt="Mitarbeiter mit Daumen hoch und einem Döner Teller an der Theke" width="480" height="639" loading="lazy"></figure>
-          <div class="b-quote">
+          <figure class="b-kiosk reveal"><img src="assets/img/kiosk-nacht.jpg" alt="Der runde Herr-Biggie-Kiosk am Bahnhof Siegen bei Nacht mit Leuchtschild" width="480" height="639" loading="lazy"></figure>
+          <figure class="b-team reveal"><img src="assets/img/team-biggie.jpg" alt="Der Chef von Herr Biggie hält einen frisch gemachten Döner in die Kamera" width="447" height="447" loading="lazy"></figure>
+          <figure class="b-plate reveal"><img src="assets/img/team-teller.jpg" alt="Mitarbeiter mit Daumen hoch und einem Döner Teller an der Theke" width="480" height="639" loading="lazy"></figure>
+          <div class="b-quote reveal">
             <p data-i18n="crew.quote">Zug in 10 Minuten? Biggie in 2.</p>
             <a class="btn btn-primary" href="#speisekarte" data-i18n="cta.order">Jetzt bestellen</a>
           </div>
@@ -270,25 +279,103 @@
       </div>
     </section>
 
-    <!-- LOCATION -->
+    <!-- STORY -->
+    <section class="story" id="geschichte" aria-labelledby="storyTitle">
+      <div class="wrap story-grid">
+        <div class="story-head">
+          <p class="marker" data-i18n="story.marker">Von Eiserfeld an den Bahnhof.</p>
+          <h2 id="storyTitle" data-i18n="story.title">Unsere Geschichte.</h2>
+          <p class="story-intro" data-i18n="story.intro">Herr Biggie ist ein Siegener Original. Angefangen hat alles im Stadtteil Eiserfeld, heute steht der runde Kiosk mitten am Bahnhof.</p>
+          <figure class="story-poster">
+            <img src="assets/img/story-we-are-open.jpg" alt="Illustration des Herr-Biggie-Kiosks am Bahnhof Siegen: We are open, Mo-Sa 12-22 Uhr" width="796" height="1400" loading="lazy">
+          </figure>
+        </div>
+        <ol class="timeline" id="timeline">
+          <li class="stop reveal">
+            <span class="stop-when" data-year="0" data-i18n="story.s1.when">Der Anfang</span>
+            <h3 data-i18n="story.s1.title">Eiserfeld</h3>
+            <p data-i18n="story.s1.body">Hier hat Herr Biggie angefangen: der erste Laden im Siegener Süden, die ersten Stammgäste, die ersten Potato Döner.</p>
+          </li>
+          <li class="stop reveal">
+            <span class="stop-when" data-year="1" data-i18n="story.s2.when">Der Umzug</span>
+            <h3 data-i18n="story.s2.title">Ab an den Bahnhof</h3>
+            <p data-i18n="story.s2.body">Raus aus Eiserfeld, rein ins Zentrum: in den runden Kiosk Am Bahnhof 2, direkt am ZOB. Da, wo Pendler, Schüler und Studis jeden Tag vorbeikommen.</p>
+          </li>
+          <li class="stop reveal">
+            <span class="stop-when" data-year="2" data-i18n="story.s3.when">Die Eröffnung</span>
+            <h3 data-i18n="story.s3.title">Goldene Ballons, volle Theke</h3>
+            <img class="stop-img" src="assets/img/eroeffnung.jpg" alt="Gast bei der Eröffnung am Bahnhof mit Döner in der Hand vor goldenen Ballons" width="447" height="447" loading="lazy">
+          </li>
+          <li class="stop reveal">
+            <span class="stop-when" data-year="3" data-i18n="story.s4.when">Heute</span>
+            <h3 data-i18n="story.s4.title">Platz 1 in Siegen</h3>
+            <p data-i18n="story.s4.body">8,2 von 10 auf Coolibri und Platz 1 von 16 türkischen Lokalen in Siegen. Service: 9,2.</p>
+          </li>
+          <li class="stop stop-now reveal">
+            <span class="stop-when" data-i18n="story.s5.when">Jetzt neu</span>
+            <h3 data-i18n="story.s5.title">Online bestellen</h3>
+            <p data-i18n="story.s5.body">Bestell vor, hol ab oder lass dir deinen Biggie bringen.</p>
+            <a class="btn btn-primary" href="#speisekarte"><span data-i18n="cta.order">Jetzt bestellen</span><i class="ph-bold ph-arrow-right" aria-hidden="true"></i></a>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- LOCATION / ANFAHRT -->
     <section class="location" id="standort" aria-labelledby="locTitle">
-      <div class="wrap location-grid">
-        <div class="loc-copy">
-          <h2 id="locTitle" data-i18n="loc.title">Am Bahnhof 2. Gleich am ZOB.</h2>
-          <address>
-            Herr Biggie<br>Am Bahnhof 2<br>57072 Siegen
-          </address>
-          <table class="hours" aria-label="Öffnungszeiten">
-            <tbody id="hoursTable"></tbody>
-          </table>
-          <div class="loc-ctas">
-            <a class="btn btn-secondary" id="mapsLink" href="#" target="_blank" rel="noopener"><i class="ph-bold ph-navigation-arrow" aria-hidden="true"></i><span data-i18n="loc.route">Route planen</span></a>
-            <a class="btn btn-secondary" id="callLink" href="tel:+4917666201048"><i class="ph-bold ph-phone" aria-hidden="true"></i><span>0176 66201048</span></a>
+      <div class="wrap">
+        <div class="loc-top">
+          <div class="loc-copy">
+            <h2 id="locTitle" data-i18n="loc.title">Am Bahnhof 2. Gleich am ZOB.</h2>
+            <address>
+              Herr Biggie<br>Am Bahnhof 2<br>57072 Siegen
+            </address>
+            <p class="loc-hint" data-i18n="loc.hint">Such den runden gelben Kiosk mit dem leuchtenden Herr-Biggie-Schild.</p>
+            <div class="loc-ctas">
+              <a class="btn btn-primary" id="routeGoogle" href="https://www.google.com/maps/dir/?api=1&amp;destination=Herr+Biggie,+Am+Bahnhof+2,+57072+Siegen" target="_blank" rel="noopener"><i class="ph-bold ph-navigation-arrow" aria-hidden="true"></i><span data-i18n="loc.route">Route planen</span></a>
+              <a class="btn btn-secondary" id="routeApple" href="https://maps.apple.com/?daddr=Am+Bahnhof+2,+57072+Siegen" target="_blank" rel="noopener"><i class="ph-bold ph-map-trifold" aria-hidden="true"></i><span>Apple Karten</span></a>
+            </div>
+          </div>
+          <div class="loc-hours">
+            <h3 data-i18n="loc.hoursTitle">Öffnungszeiten</h3>
+            <table class="hours" aria-label="Öffnungszeiten">
+              <tbody id="hoursTable"></tbody>
+            </table>
+            <p class="loc-phone"><i class="ph-bold ph-phone" aria-hidden="true"></i><span data-i18n="loc.preorder">Vorbestellen:</span> <a href="tel:+4917666201048">0176 66201048</a></p>
           </div>
         </div>
-        <figure class="loc-poster">
-          <img src="assets/img/story-we-are-open.jpg" alt="Illustration des Herr-Biggie-Kiosks: We are open, Mo-Sa 12-22 Uhr, Am Bahnhof 2, 57072 Siegen" width="796" height="1400" loading="lazy">
-        </figure>
+
+        <div class="loc-grid">
+          <div class="map-card reveal" id="mapCard">
+            <img class="map-cover" src="assets/img/kiosk-nacht.jpg" alt="Der Herr-Biggie-Kiosk am Bahnhof Siegen bei Nacht" width="480" height="639" loading="lazy">
+            <div class="map-consent" id="mapConsent">
+              <button class="btn btn-primary" type="button" id="mapLoad"><i class="ph-bold ph-map-trifold" aria-hidden="true"></i><span data-i18n="loc.mapLoad">Karte laden</span></button>
+              <p data-i18n="loc.mapConsent">Lädt Google Maps. Dabei werden Daten an Google übertragen.</p>
+            </div>
+          </div>
+          <ul class="routes">
+            <li class="route reveal">
+              <i class="ph-bold ph-train" aria-hidden="true"></i>
+              <h3 data-i18n="loc.train">Mit dem Zug</h3>
+              <p data-i18n="loc.trainBody">Bis Siegen Hauptbahnhof. Raus aus dem Bahnhof Richtung ZOB, nach wenigen Schritten bist du da.</p>
+            </li>
+            <li class="route reveal">
+              <i class="ph-bold ph-bus" aria-hidden="true"></i>
+              <h3 data-i18n="loc.bus">Mit dem Bus</h3>
+              <p data-i18n="loc.busBody">Alle Linien zum ZOB Siegen. Der Kiosk steht direkt am Busbahnhof.</p>
+            </li>
+            <li class="route reveal">
+              <i class="ph-bold ph-car" aria-hidden="true"></i>
+              <h3 data-i18n="loc.car">Mit dem Auto</h3>
+              <p data-i18n="loc.carBody">Parken z. B. im Parkhaus City-Galerie (Am Bahnhof 40), gleich nebenan. Öffnungszeiten des Parkhauses beachten.</p>
+            </li>
+            <li class="route reveal">
+              <i class="ph-bold ph-bicycle" aria-hidden="true"></i>
+              <h3 data-i18n="loc.bike">Mit dem Rad</h3>
+              <p data-i18n="loc.bikeBody">Bis vor die Tür rollen, Döner holen, weiterfahren.</p>
+            </li>
+          </ul>
+        </div>
       </div>
     </section>
   </main>
@@ -321,8 +408,8 @@
 
   <!-- Artikel-Dialog -->
   <dialog class="item-dialog" id="itemDialog" aria-labelledby="dlgTitle">
-    <form method="dialog" class="dlg-inner" id="itemForm">
-      <button class="icon-btn dlg-close" value="cancel" aria-label="Schließen"><i class="ph-bold ph-x" aria-hidden="true"></i></button>
+    <div class="dlg-inner" id="itemForm">
+      <button class="icon-btn dlg-close" type="button" id="dlgClose" aria-label="Schließen"><i class="ph-bold ph-x" aria-hidden="true"></i></button>
       <div class="dlg-media" id="dlgMedia"></div>
       <div class="dlg-body">
         <h3 id="dlgTitle"></h3>
@@ -341,21 +428,21 @@
         </div>
         <button type="button" class="btn btn-primary dlg-add" id="dlgAdd"><span data-i18n="item.add">Hinzufügen</span><span id="dlgPrice"></span></button>
       </div>
-    </form>
+    </div>
   </dialog>
 
-  <!-- Demo-Checkout-Dialog (solange kein Shopify-Shop verbunden ist) -->
+  <!-- Bestell-Dialog solange kein Shopify-Shop verbunden ist: Bestellung per WhatsApp oder Telefon -->
   <dialog class="demo-dialog" id="demoDialog" aria-labelledby="demoTitle">
-    <form method="dialog" class="demo-inner">
-      <h3 id="demoTitle" data-i18n="demo.title">Demo-Modus</h3>
-      <p data-i18n="demo.body">Der Shopify-Shop ist noch nicht verbunden. So würde deine Bestellung übergeben:</p>
+    <div class="demo-inner">
+      <h3 id="demoTitle" data-i18n="demo.title">Bestellung abschicken</h3>
+      <p data-i18n="demo.body">Schick uns deine Bestellung per WhatsApp. Bezahlt wird bei Abholung oder Lieferung, bar oder mit Karte.</p>
       <pre id="demoSummary"></pre>
-      <p data-i18n="demo.call">Hunger jetzt? Ruf direkt an und bestell telefonisch.</p>
       <div class="demo-actions">
+        <button class="btn btn-secondary" type="button" id="demoClose" data-i18n="demo.back">Zurück</button>
         <a class="btn btn-secondary" href="tel:+4917666201048"><i class="ph-bold ph-phone" aria-hidden="true"></i>0176 66201048</a>
-        <button class="btn btn-primary" value="ok" data-i18n="demo.ok">Alles klar</button>
+        <a class="btn btn-primary" id="waOrder" href="#" target="_blank" rel="noopener"><i class="ph-bold ph-whatsapp-logo" aria-hidden="true"></i><span data-i18n="demo.whatsapp">Per WhatsApp senden</span></a>
       </div>
-    </form>
+    </div>
   </dialog>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>

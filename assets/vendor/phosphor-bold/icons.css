@@ -2,7 +2,11 @@
 @font-face{font-family:"Phosphor-Bold";src:url("./Phosphor-Bold.woff2") format("woff2");font-weight:normal;font-style:normal;font-display:block}
 .ph-bold{font-family:"Phosphor-Bold"!important;speak:never;font-style:normal;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;display:inline-block}
 .ph-bold.ph-arrow-right:before{content:"\e06c"}
+.ph-bold.ph-bicycle:before{content:"\e0d6"}
+.ph-bold.ph-bus:before{content:"\e106"}
+.ph-bold.ph-car:before{content:"\e112"}
 .ph-bold.ph-clock:before{content:"\e19a"}
+.ph-bold.ph-crown:before{content:"\e614"}
 .ph-bold.ph-drop:before{content:"\e210"}
 .ph-bold.ph-envelope-simple:before{content:"\e218"}
 .ph-bold.ph-facebook-logo:before{content:"\e226"}
@@ -12,15 +16,19 @@
 .ph-bold.ph-lock-simple:before{content:"\e308"}
 .ph-bold.ph-magnifying-glass:before{content:"\e30c"}
 .ph-bold.ph-map-pin:before{content:"\e316"}
+.ph-bold.ph-map-trifold:before{content:"\e31a"}
 .ph-bold.ph-minus:before{content:"\e32a"}
 .ph-bold.ph-moped:before{content:"\e824"}
 .ph-bold.ph-navigation-arrow:before{content:"\eade"}
+.ph-bold.ph-pause:before{content:"\e39e"}
 .ph-bold.ph-phone:before{content:"\e3b8"}
 .ph-bold.ph-play:before{content:"\e3d0"}
 .ph-bold.ph-plus:before{content:"\e3d4"}
 .ph-bold.ph-shopping-bag:before{content:"\e416"}
 .ph-bold.ph-star:before{content:"\e46a"}
 .ph-bold.ph-storefront:before{content:"\e470"}
+.ph-bold.ph-train:before{content:"\e496"}
 .ph-bold.ph-translate:before{content:"\e4a2"}
 .ph-bold.ph-trash:before{content:"\e4a6"}
+.ph-bold.ph-whatsapp-logo:before{content:"\e5d0"}
 .ph-bold.ph-x:before{content:"\e4f6"}

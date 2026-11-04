@@ -416,10 +416,12 @@
     updateDialogPrice();
   });
   $("#dlgAdd").addEventListener("click", () => {
+    flyToCart($("#dlgAdd"));
     addToCart(current.item.id, current.sel, current.qty);
     toast(tr("cart.added", { name: L(current.item.name) }));
     dlg.close();
   });
+  $("#dlgClose").addEventListener("click", () => dlg.close());
   dlg.addEventListener("close", () => {
     if (!$("#cartPanel").classList.contains("is-open")) document.body.classList.remove("no-scroll");
   });
@@ -674,13 +676,15 @@
     }
 
     const order = buildOrder();
-    if (!C.shopifyDomain || order.missing.length) {
-      const summary =
-        order.note +
-        "\n\n" +
-        tr("cart.total") + ": " + $("#total").textContent +
-        (C.shopifyDomain && order.missing.length ? "\n\nFehlende Shopify-Varianten:\n" + order.missing.join("\n") : "");
-      $("#demoSummary").textContent = summary;
+    if (!shopifyReady()) {
+      if (C.shopifyDomain && order.missing.length && window.console) {
+        console.warn("Shopify-Varianten fehlen, Bestellung läuft über WhatsApp:", order.missing);
+      }
+      const text = localOrderText();
+      $("#demoSummary").textContent = text;
+      const wa = $("#waOrder");
+      wa.hidden = !C.whatsapp;
+      if (C.whatsapp) wa.href = "https://wa.me/" + C.whatsapp + "?text=" + encodeURIComponent(text);
       const dd = $("#demoDialog");
       if (typeof dd.showModal === "function") dd.showModal();
       else dd.setAttribute("open", "");
@@ -689,6 +693,63 @@
     toast(tr("redirect"));
     window.location.href = checkoutUrl(order);
   });
+
+  /* Shopify ist "bereit", wenn eine Domain gesetzt ist und alle Varianten im Warenkorb eine ID haben. */
+  function shopifyReady() {
+    if (!C.shopifyDomain) return false;
+    return buildOrder().missing.length === 0;
+  }
+
+  /* Gut lesbare Bestellung für WhatsApp (in der gewählten Sprache) */
+  function localOrderText() {
+    const lines = cart.map((l) => {
+      const item = itemsById[l.itemId];
+      const details = selectionSummary(item, l.sel, false);
+      return "- " + l.qty + "x " + L(item.name) + (details.length ? " (" + details.join(", ") + ")" : "") + "  " + money(unitPrice(item, l.sel) * l.qty);
+    });
+    const v = $("#slot").value;
+    const time = v === "asap" ? tr("wa.asap") : $("#slot").selectedOptions[0].textContent;
+    const where =
+      mode === "delivery"
+        ? tr("wa.delivery") + ": " + $("#street").value.trim() + ", " + $("#zip").value.trim() + " " + $("#city").value.trim()
+        : tr("wa.pickup") + ": Am Bahnhof 2";
+    const extra = $("#note").value.trim();
+    const sub = subtotal();
+    const fee = deliveryFee(sub);
+    return [
+      tr("wa.intro"),
+      "",
+      ...lines,
+      "",
+      where,
+      tr("wa.time") + ": " + time,
+      extra ? tr("wa.note") + ": " + extra : null,
+      "",
+      (fee ? tr("cart.fee") + ": " + money(fee) + "\n" : "") + tr("cart.total") + ": " + money(sub + fee),
+    ]
+      .filter((x) => x !== null)
+      .join("\n");
+  }
+
+  function closeDemo() {
+    const dd = $("#demoDialog");
+    if (typeof dd.close === "function") dd.close();
+    else dd.removeAttribute("open");
+  }
+  $("#demoClose").addEventListener("click", closeDemo);
+  $("#waOrder").addEventListener("click", () => setTimeout(closeDemo, 300));
+  $("#demoDialog").addEventListener("click", (e) => {
+    if (e.target === $("#demoDialog")) closeDemo();
+  });
+
+  /* Kasse-Button und Hinweis je nach Bestellweg */
+  function renderCheckoutLabel() {
+    const viaShop = !!C.shopifyDomain;
+    $('#checkoutBtn [data-i18n]').textContent = tr(viaShop ? "cart.checkout" : "cart.order");
+    $(".pay-note").textContent = tr(viaShop ? "cart.payNote" : "cart.payNoteLocal");
+    const icon = $("#checkoutBtn i");
+    icon.className = "ph-bold " + (viaShop ? "ph-lock-simple" : "ph-whatsapp-logo");
+  }
 
   $("#zip").addEventListener("input", () => fieldError(""));
   $("#street").addEventListener("input", () => fieldError(""));
@@ -722,20 +783,106 @@
     $("#factDeliverySub").textContent = tr("facts.deliverySub", { min: money(C.delivery.minOrder) });
   }
 
-  /* ---------- Instagram-Reel (2-Klick-Lösung) ---------- */
-  $("#reelPlay").addEventListener("click", () => {
-    const frame = $("#reelFrame");
-    frame.classList.add("is-playing");
-    frame.innerHTML =
-      '<iframe src="' + C.reel.embed + '" title="Herr Biggie Instagram Reel" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
-    const link = document.createElement("a");
-    link.className = "reel-link";
-    link.href = C.reel.url;
-    link.target = "_blank";
-    link.rel = "noopener";
-    link.innerHTML = '<i class="ph-bold ph-instagram-logo" aria-hidden="true"></i>' + escapeHtml(tr("reel.open"));
-    $("#reelConsent").replaceWith(link);
+  /* ---------- Hero: Instagram-Reel als Hintergrundvideo ---------- */
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const video = $("#heroVideo");
+  const videoToggle = $("#videoToggle");
+  let videoWanted = true; // Nutzer hat nicht auf Pause gedrückt
+
+  function setToggleIcon() {
+    const paused = video.paused;
+    videoToggle.querySelector("i").className = "ph-bold " + (paused ? "ph-play" : "ph-pause");
+    videoToggle.setAttribute("aria-label", tr(paused ? "video.play" : "video.pause"));
+  }
+
+  function startHeroVideo() {
+    const saveData = navigator.connection && navigator.connection.saveData;
+    if (!C.reel.video || saveData || reduceMotion.matches) return;
+    video.src = C.reel.video;
+    video.addEventListener(
+      "loadeddata",
+      () => {
+        document.querySelector(".hero").classList.add("has-video");
+        videoToggle.hidden = false;
+        video.play().then(setToggleIcon).catch(setToggleIcon);
+      },
+      { once: true }
+    );
+    // Fehlt die Datei: Foto bleibt einfach stehen, kein Fehler für den Kunden
+    video.addEventListener("error", () => video.removeAttribute("src"), { once: true });
+    video.load();
+
+    // Pausieren, wenn der Hero nicht sichtbar ist (spart Akku und Daten)
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          if (!video.src) return;
+          if (en.isIntersecting && videoWanted) video.play().catch(() => {});
+          else video.pause();
+        });
+      }).observe(video);
+    }
+  }
+  videoToggle.addEventListener("click", () => {
+    if (video.paused) {
+      videoWanted = true;
+      video.play().catch(() => {});
+    } else {
+      videoWanted = false;
+      video.pause();
+    }
   });
+  video.addEventListener("play", setToggleIcon);
+  video.addEventListener("pause", setToggleIcon);
+
+  /* ---------- Karte (2-Klick-Lösung) ---------- */
+  $("#mapLoad").addEventListener("click", () => {
+    if (!C.mapEmbed) {
+      window.open($("#routeGoogle").href, "_blank", "noopener");
+      return;
+    }
+    const card = $("#mapCard");
+    card.classList.add("is-map");
+    card.innerHTML =
+      '<iframe src="' + C.mapEmbed + '" title="Karte: Herr Biggie, Am Bahnhof 2, Siegen" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>';
+  });
+
+  /* ---------- Geschichte: Jahreszahlen, wenn hinterlegt ---------- */
+  function renderStoryYears() {
+    const years = C.storyYears || [];
+    $$(".stop-when[data-year]").forEach((el) => {
+      const y = years[+el.dataset.year];
+      if (y) el.textContent = y + " · " + tr(el.dataset.i18n);
+    });
+  }
+
+  /* ---------- Fly-to-Cart: kleiner Punkt fliegt in den Warenkorb ---------- */
+  function flyToCart(fromEl) {
+    if (reduceMotion.matches || !fromEl || !document.body.animate) return;
+    const bar = $("#cartBar");
+    const target = !bar.hidden && bar.offsetParent ? bar : $("#cartOpen");
+    const a = fromEl.getBoundingClientRect();
+    const b = target.getBoundingClientRect();
+    const dot = document.createElement("span");
+    dot.className = "fly-dot";
+    dot.innerHTML = '<i class="ph-bold ph-shopping-bag" aria-hidden="true"></i>';
+    document.body.appendChild(dot);
+    const x0 = a.left + a.width / 2 - 20;
+    const y0 = a.top + a.height / 2 - 20;
+    const x1 = b.left + b.width / 2 - 20;
+    const y1 = b.top + b.height / 2 - 20;
+    const lift = Math.min(160, Math.abs(y1 - y0) / 2 + 60);
+    dot
+      .animate(
+        [
+          { transform: `translate(${x0}px, ${y0}px) scale(0.6)`, opacity: 0 },
+          { transform: `translate(${(x0 + x1) / 2}px, ${Math.min(y0, y1) - lift}px) scale(1.15)`, opacity: 1, offset: 0.5 },
+          { transform: `translate(${x1}px, ${y1}px) scale(0.5)`, opacity: 0.4 },
+        ],
+        { duration: 700, easing: "cubic-bezier(0.5, 0, 0.3, 1)" }
+      )
+      .finished.then(() => dot.remove(), () => dot.remove());
+  }
 
   /* ---------- Sprache anwenden ---------- */
   function applyLang() {
@@ -751,6 +898,9 @@
     renderMenu();
     renderStatus();
     renderMode();
+    renderCheckoutLabel();
+    renderStoryYears();
+    if (video.src) setToggleIcon();
   }
   $("#langToggle").addEventListener("click", () => {
     lang = lang === "de" ? "en" : "de";
@@ -768,30 +918,12 @@
     toastTimer = setTimeout(() => el.classList.remove("is-on"), 2400);
   }
 
-  let revealObserver;
-  function observeReveals() {
-    if (!("IntersectionObserver" in window)) {
-      $$(".reveal").forEach((el) => el.classList.add("is-in"));
-      return;
-    }
-    if (!revealObserver) {
-      revealObserver = new IntersectionObserver(
-        (entries) =>
-          entries.forEach((en) => {
-            if (en.isIntersecting) {
-              en.target.classList.add("is-in");
-              revealObserver.unobserve(en.target);
-            }
-          }),
-        { rootMargin: "0px 0px -8% 0px" }
-      );
-    }
-    $$(".reveal:not(.is-in)").forEach((el) => revealObserver.observe(el));
-  }
-
-  $("#mapsLink").href = C.business.mapsUrl;
+  // Einblend-Animationen laufen per CSS (scroll-driven, animation-timeline: view()).
+  // Ohne Browser-Unterstützung ist alles sofort sichtbar, nichts wartet auf JavaScript.
+  function observeReveals() {}
 
   applyLang();
+  startHeroVideo();
   // Status und Zeitfenster jede Minute aktualisieren
   setInterval(() => {
     renderStatus();

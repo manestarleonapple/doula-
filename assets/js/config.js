@@ -21,11 +21,25 @@ window.BIGGIE_CONFIG = {
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Herr+Biggie+Am+Bahnhof+2+57072+Siegen",
   },
 
-  // Instagram-Reel für die Hero-Vorschau (wird erst nach Klick geladen, DSGVO).
+  // Instagram-Reel. Als Hintergrundvideo im Hero läuft die MP4-Datei des Reels
+  // (Instagram erlaubt kein Einbetten als Hintergrund). Datei ablegen unter:
+  // assets/video/hero.mp4  (Hochformat, stumm, max. ca. 8 MB). Fehlt sie, zeigt der Hero das Foto.
   reel: {
     url: "https://www.instagram.com/reel/CztRO9YMEO1/",
-    embed: "https://www.instagram.com/reel/CztRO9YMEO1/embed/",
+    video: "assets/video/hero.mp4",
   },
+
+  // Bestellung, solange kein Shopify-Shop verbunden ist: per WhatsApp an diese Nummer
+  // (international, ohne + und ohne Leerzeichen). Leer = nur Telefon.
+  // TODO: bestätigen, dass die Nummer WhatsApp hat.
+  whatsapp: "4917666201048",
+
+  // Karte im Bereich "Anfahrt" (wird erst nach Klick geladen, DSGVO). Leer = nur Routen-Links.
+  mapEmbed: "https://www.google.com/maps?q=Herr+Biggie,+Am+Bahnhof+2,+57072+Siegen&output=embed",
+
+  // Jahreszahlen für "Unsere Geschichte" (Eiserfeld, Umzug, Eröffnung, heute).
+  // TODO: vom Betrieb erfragen. Leer = es wird nur der Text angezeigt.
+  storyYears: ["", "", "", ""],
 
   timezone: "Europe/Berlin",
   // Öffnungszeiten je Wochentag (0 = Sonntag). null = geschlossen.
